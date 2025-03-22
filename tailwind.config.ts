@@ -64,7 +64,7 @@ export default {
           ring: "hsl(var(--sidebar-ring))",
         },
         dlai: {
-          primary: "#0056D6",
+          primary: "#ff4b55", // Updated to match the DeepLearning.AI logo color
           secondary: "#F5F5F7",
           gray: "#8E9196",
           dark: "#333333",

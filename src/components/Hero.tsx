@@ -89,7 +89,7 @@ const Hero = () => {
                   placeholder="Email"
                   className="flex-1 px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-dlai-primary focus:border-transparent transition-all duration-200"
                 />
-                <button className="px-6 py-3 bg-gray-700 text-white rounded-md hover:bg-gray-800 transition-colors duration-200">
+                <button className="px-6 py-3 bg-dlai-primary text-white rounded-md hover:bg-opacity-90 transition-colors duration-200">
                   Subscribe
                 </button>
               </div>

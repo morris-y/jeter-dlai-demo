@@ -122,7 +122,7 @@
 
 .checkerboard-pattern {
   background-image: 
-    repeating-conic-gradient(#f5f5f7 0% 25%, #ffffff 0% 50%);
+    repeating-conic-gradient(#fff5f6 0% 25%, #ffffff 0% 50%);
   background-size: 40px 40px;
 }
 

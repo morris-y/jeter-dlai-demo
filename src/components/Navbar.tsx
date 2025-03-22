@@ -32,10 +32,12 @@ const Navbar = () => {
       )}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
-        <a href="/" className="flex items-center space-x-2">
-          <div className="text-xl font-semibold text-gray-900 flex items-center">
-            <span className="text-dlai-primary">DeepLearning.AI</span>
-          </div>
+        <a href="/" className="flex items-center space-x-3">
+          <img 
+            src="/lovable-uploads/a3bb4404-edae-4a97-abb8-e9720603bafb.png" 
+            alt="DeepLearning.AI Logo" 
+            className="h-10"
+          />
         </a>
 
         {/* Desktop Navigation */}
