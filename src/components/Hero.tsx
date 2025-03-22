@@ -33,8 +33,21 @@ const Hero = () => {
       
       <div className="container mx-auto px-6 relative z-10">
         <div className="flex flex-col md:flex-row items-center">
-          {/* Text Content */}
-          <div className="md:w-1/2 mb-12 md:mb-0 space-y-6">
+          {/* Image/Visual Area - Now on the left side */}
+          <div className="md:w-1/2 md:pr-12 mb-12 md:mb-0">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8 }}
+              className="rounded-2xl overflow-hidden shadow-xl relative group"
+            >
+              <div className="checkerboard-pattern w-full h-96 md:h-[500px] rounded-2xl"></div>
+              <div className="absolute inset-0 bg-gradient-to-tr from-dlai-primary/20 to-transparent opacity-70 group-hover:opacity-90 transition-opacity duration-300"></div>
+            </motion.div>
+          </div>
+          
+          {/* Text Content - Now on the right side */}
+          <div className="md:w-1/2 md:pl-12 space-y-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -96,19 +109,6 @@ const Hero = () => {
                   Subscribe
                 </button>
               </div>
-            </motion.div>
-          </div>
-          
-          {/* Image/Visual Area */}
-          <div className="md:w-1/2 md:pl-12">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8 }}
-              className="rounded-2xl overflow-hidden shadow-xl relative group"
-            >
-              <div className="checkerboard-pattern w-full h-96 md:h-[500px] rounded-2xl"></div>
-              <div className="absolute inset-0 bg-gradient-to-tr from-dlai-primary/20 to-transparent opacity-70 group-hover:opacity-90 transition-opacity duration-300"></div>
             </motion.div>
           </div>
         </div>
