@@ -1,6 +1,7 @@
 
 import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const Hero = () => {
   const checkboardRef = useRef<HTMLDivElement>(null);
@@ -68,9 +69,11 @@ const Hero = () => {
                 Let our AI tailor your new AI learning journey for you.
               </p>
               
-              <button className="px-8 py-3 rounded-md bg-dlai-primary text-white font-medium transition-all duration-300 transform hover:translate-y-[-2px] hover:shadow-lg">
-                Find what's right for you
-              </button>
+              <Link to="/course-finder">
+                <button className="px-8 py-3 rounded-md bg-dlai-primary text-white font-medium transition-all duration-300 transform hover:translate-y-[-2px] hover:shadow-lg">
+                  Find what's right for you
+                </button>
+              </Link>
             </motion.div>
             
             <motion.div

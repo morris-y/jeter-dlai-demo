@@ -1,7 +1,8 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Play } from 'lucide-react';
+import { Play, ChevronRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const courses = [
   {
@@ -52,6 +53,12 @@ const CourseCard = ({ title, image, index }: { title: string; image: string; ind
           </span>
           <span className="ml-2 text-sm text-gray-500">4.8 (10.2k reviews)</span>
         </div>
+        <Link to="/course-details" className="mt-3 inline-block">
+          <button className="text-sm text-dlai-primary hover:underline flex items-center">
+            View details
+            <ChevronRight size={16} className="ml-1" />
+          </button>
+        </Link>
       </div>
     </motion.div>
   );
