@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 import Navbar from '@/components/Navbar';
@@ -169,7 +168,7 @@ const NewCourses = () => {
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
-      <main>
+      <main className="pt-24">
         {/* Career Journey Section */}
         <section className="py-12 bg-white">
           <div className="container mx-auto px-6">

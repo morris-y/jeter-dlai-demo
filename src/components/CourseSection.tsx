@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Play, ChevronRight, ChevronDown, ChevronUp } from 'lucide-react';
@@ -216,32 +215,8 @@ const CourseSection = () => {
         </div>
       </section>
       
-      {/* Collaboration Partners Section */}
-      <section className="py-12 bg-white">
-        <div className="container mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true, margin: '-100px' }}
-            className="text-center mb-10"
-          >
-            <h2 className="text-3xl font-bold mb-2">Collaboration Partners</h2>
-          </motion.div>
-
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center justify-items-center">
-            <img src="/lovable-uploads/143eb32f-2879-43c8-8ffd-82df51fee6e7.png" alt="Google Cloud" className="h-8" />
-            <img src="/lovable-uploads/fa564236-7f33-489b-9f12-30bbea618d06.png" alt="Microsoft" className="h-8" />
-            <img src="/lovable-uploads/8a0a3783-9b7d-4d7c-9943-01053ed91a9d.png" alt="Stanford" className="h-8" />
-            <img src="/lovable-uploads/2ad5c8c7-3f4e-4a6e-aaac-dfc2f5406083.png" alt="Cohere" className="h-8" />
-            <img src="/lovable-uploads/1d239570-a6c9-4809-b4af-146ec5f736fc.png" alt="Lamini" className="h-8" />
-            <img src="/lovable-uploads/7b2d94ea-b23a-401d-aaf1-7122bfb6d8f9.png" alt="AWS" className="h-8" />
-          </div>
-        </div>
-      </section>
-      
       {/* Short Courses Section */}
-      <section className="py-12 bg-gray-50">
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
