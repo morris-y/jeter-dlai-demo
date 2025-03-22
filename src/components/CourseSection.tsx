@@ -1,7 +1,7 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Play, ChevronRight } from 'lucide-react';
+import { Play, ChevronRight, ChevronDown, ChevronUp } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -11,21 +11,65 @@ const courses = [
     id: 1,
     title: 'Machine Learning Specialization',
     image: 'checkerboard',
+    description: 'Learn the fundamentals of machine learning and how to use these techniques to build real-world AI applications.',
+    details: {
+      instructor: 'Andrew Ng',
+      duration: '3 months',
+      level: 'Beginner to Intermediate',
+      syllabus: [
+        'Supervised Machine Learning',
+        'Advanced Learning Algorithms',
+        'Unsupervised Learning'
+      ]
+    }
   },
   {
     id: 2,
     title: 'Deep Learning Specialization',
     image: 'checkerboard',
+    description: 'Become a deep learning expert. Master deep neural networks, CNNs, RNNs, and learn to build models in PyTorch and TensorFlow.',
+    details: {
+      instructor: 'Andrew Ng',
+      duration: '5 months',
+      level: 'Intermediate',
+      syllabus: [
+        'Neural Networks and Deep Learning',
+        'Convolutional Neural Networks',
+        'Sequence Models'
+      ]
+    }
   },
   {
     id: 3,
     title: 'AI For Everyone',
     image: 'checkerboard',
+    description: 'Learn key concepts and terminology in AI without the technical background. Designed for everyone, including non-technical professionals.',
+    details: {
+      instructor: 'Andrew Ng',
+      duration: '4 weeks',
+      level: 'Beginner',
+      syllabus: [
+        'What is AI?',
+        'Building AI Projects',
+        'AI in Your Company'
+      ]
+    }
   },
   {
     id: 4,
     title: 'ChatGPT Prompt Engineering',
     image: 'checkerboard',
+    description: 'Master prompt engineering to get the most out of AI models like ChatGPT for various applications and use cases.',
+    details: {
+      instructor: 'Andrew Ng & Isa Fulford',
+      duration: '2 weeks',
+      level: 'All Levels',
+      syllabus: [
+        'Prompt Engineering Fundamentals',
+        'Iterative Prompt Development',
+        'Advanced Techniques'
+      ]
+    }
   },
 ];
 
@@ -38,13 +82,26 @@ const shortCourses = [
   },
   {
     id: 2,
-    title: 'Event-Driven Agentic Document Workflows',
-    description: 'Build an event-driven agentic workflow to process documents and AI forms using RAG and human-in-the-loop feedback.',
+    title: 'LLM-Powered Autonomous Agents',
+    description: 'Learn to build and deploy autonomous agents that can perform complex tasks by leveraging large language models.',
     badge: 'NEW SHORT COURSE'
   }
 ];
 
-const CourseCard = ({ title, image, index }: { title: string; image: string; index: number }) => {
+const CourseCard = ({ title, image, description, details, index }: { 
+  title: string; 
+  image: string; 
+  description: string; 
+  details: {
+    instructor: string;
+    duration: string;
+    level: string;
+    syllabus: string[];
+  };
+  index: number 
+}) => {
+  const [showDetails, setShowDetails] = useState(false);
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -64,18 +121,55 @@ const CourseCard = ({ title, image, index }: { title: string; image: string; ind
       </div>
       <div className="p-5">
         <h3 className="font-medium text-lg text-gray-900">{title}</h3>
+        <p className="mt-2 text-gray-600 text-sm">{description}</p>
         <div className="mt-3 flex items-center">
           <span className="inline-block px-2 py-1 text-xs font-medium bg-dlai-secondary text-dlai-primary rounded-full">
             Popular
           </span>
           <span className="ml-2 text-sm text-gray-500">4.8 (10.2k reviews)</span>
         </div>
-        <Link to="/course-details" className="mt-3 inline-block">
-          <button className="text-sm text-dlai-primary hover:underline flex items-center">
-            View details
-            <ChevronRight size={16} className="ml-1" />
-          </button>
-        </Link>
+        
+        <button 
+          onClick={() => setShowDetails(!showDetails)}
+          className="mt-3 text-sm text-dlai-primary hover:underline flex items-center"
+        >
+          {showDetails ? 'Hide details' : 'View details'}
+          {showDetails ? <ChevronUp size={16} className="ml-1" /> : <ChevronDown size={16} className="ml-1" />}
+        </button>
+        
+        {showDetails && (
+          <div className="mt-4 pt-4 border-t border-gray-200">
+            <div className="grid grid-cols-2 gap-4 mb-4">
+              <div>
+                <h4 className="text-xs text-gray-500 uppercase tracking-wider">Instructor</h4>
+                <p className="text-sm font-medium">{details.instructor}</p>
+              </div>
+              <div>
+                <h4 className="text-xs text-gray-500 uppercase tracking-wider">Duration</h4>
+                <p className="text-sm font-medium">{details.duration}</p>
+              </div>
+              <div>
+                <h4 className="text-xs text-gray-500 uppercase tracking-wider">Level</h4>
+                <p className="text-sm font-medium">{details.level}</p>
+              </div>
+            </div>
+            
+            <h4 className="text-xs text-gray-500 uppercase tracking-wider mb-2">Syllabus</h4>
+            <ul className="text-sm space-y-1">
+              {details.syllabus.map((item, i) => (
+                <li key={i} className="flex items-center">
+                  <div className="w-1.5 h-1.5 rounded-full bg-dlai-primary mr-2"></div>
+                  {item}
+                </li>
+              ))}
+            </ul>
+            
+            <div className="mt-4 pt-3 flex justify-between items-center">
+              <span className="text-lg font-bold text-dlai-primary">Free</span>
+              <Button className="bg-dlai-primary hover:bg-dlai-primary/90">Enroll Now</Button>
+            </div>
+          </div>
+        )}
       </div>
     </motion.div>
   );
@@ -105,6 +199,8 @@ const CourseSection = () => {
                 key={course.id}
                 title={course.title}
                 image={course.image}
+                description={course.description}
+                details={course.details}
                 index={index}
               />
             ))}

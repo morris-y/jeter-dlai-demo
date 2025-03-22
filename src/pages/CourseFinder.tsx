@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { X } from 'lucide-react';
+import { X, Play } from 'lucide-react';
 import { motion } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -37,11 +37,11 @@ const CourseFinder = () => {
     const currentIndex = steps.indexOf(step);
     
     return (
-      <div className="flex justify-center space-x-2 mb-6">
+      <div className="flex justify-center space-x-2 mb-8">
         {steps.map((s, i) => (
           <div 
             key={s} 
-            className={`h-1 w-16 rounded-full ${i <= currentIndex ? 'bg-dlai-primary' : 'bg-gray-300'}`}
+            className={`h-1 w-20 rounded-full ${i <= currentIndex ? 'bg-dlai-primary' : 'bg-gray-300'}`}
           />
         ))}
       </div>
@@ -51,12 +51,12 @@ const CourseFinder = () => {
   return (
     <div className="min-h-screen bg-white flex flex-col">
       <Navbar />
-      <main className="flex-grow flex items-center justify-center py-12 px-4">
+      <main className="flex-grow flex items-center justify-center py-20 px-4 mt-16">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3 }}
-          className="bg-white rounded-xl shadow-lg w-full max-w-3xl p-6 relative"
+          className="bg-white rounded-xl shadow-lg w-full max-w-5xl p-6 relative"
         >
           <button 
             onClick={() => navigate('/')}
@@ -70,23 +70,33 @@ const CourseFinder = () => {
           <h1 className="text-2xl md:text-3xl font-bold text-center mb-6">
             Find what course right for you
           </h1>
-          <p className="text-center text-gray-600 mb-8">
+          <p className="text-center text-gray-600 mb-10">
             Answering three questions help us recommend the best courses for you.
           </p>
           
           {step === 'goal' && (
-            <div className="space-y-4">
+            <div className="space-y-6">
               <h2 className="text-xl font-medium">What do you want to achieve?</h2>
-              <div className="space-y-3">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {['Switch careers', 'Learn a skill for my job', 'Build a project', 'Learn for fun', 'Not sure yet'].map((option) => (
                   <div 
                     key={option}
                     onClick={() => setGoal(option)}
-                    className={`p-4 border rounded-lg cursor-pointer transition-all ${
+                    className={`p-5 border rounded-lg cursor-pointer transition-all ${
                       goal === option ? 'border-dlai-primary bg-dlai-primary/5' : 'border-gray-200 hover:border-dlai-primary/50'
                     }`}
                   >
-                    {option}
+                    <div className="flex items-start">
+                      <div className="w-16 h-16 bg-gray-100 rounded-lg mr-4 flex items-center justify-center">
+                        <div className="w-8 h-8 bg-dlai-secondary rounded-full flex items-center justify-center">
+                          <Play size={14} className="text-dlai-primary ml-0.5" />
+                        </div>
+                      </div>
+                      <div>
+                        <h3 className="font-medium mb-1">{option}</h3>
+                        <p className="text-sm text-gray-500">Select this if you want to {option.toLowerCase()}</p>
+                      </div>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -94,29 +104,53 @@ const CourseFinder = () => {
           )}
           
           {step === 'career' && (
-            <div className="space-y-4">
+            <div className="space-y-6">
               <h2 className="text-xl font-medium">What kind of career do you want to pivot to?</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {[
-                  'Machine Learning Engineer',
-                  'Deep Learning Engineer',
-                  'Data Scientist',
-                  'AI Product Manager',
-                  'UX Designer',
-                  'Software Engineer',
-                  'Cybersecurity Expert',
-                  'AI Research Scientist',
-                  'AI Consultant',
-                  'Data Analyst'
+                  {
+                    title: 'Machine Learning Engineer',
+                    description: 'Build and deploy ML models for real-world applications'
+                  },
+                  {
+                    title: 'Deep Learning Engineer',
+                    description: 'Focus on neural networks and advanced AI systems'
+                  },
+                  {
+                    title: 'Data Scientist',
+                    description: 'Analyze data to extract insights and build models'
+                  },
+                  {
+                    title: 'AI Product Manager',
+                    description: 'Lead AI product development and strategy'
+                  },
+                  {
+                    title: 'AI Research Scientist',
+                    description: 'Advance the field of AI through research'
+                  },
+                  {
+                    title: 'AI Consultant',
+                    description: 'Help organizations implement AI solutions'
+                  }
                 ].map((option) => (
                   <div 
-                    key={option}
-                    onClick={() => setCareer(option)}
-                    className={`p-4 border rounded-lg cursor-pointer transition-all ${
-                      career === option ? 'border-dlai-primary bg-dlai-primary/5' : 'border-gray-200 hover:border-dlai-primary/50'
+                    key={option.title}
+                    onClick={() => setCareer(option.title)}
+                    className={`p-5 border rounded-lg cursor-pointer transition-all ${
+                      career === option.title ? 'border-dlai-primary bg-dlai-primary/5' : 'border-gray-200 hover:border-dlai-primary/50'
                     }`}
                   >
-                    {option}
+                    <div className="flex items-start">
+                      <div className="w-16 h-16 bg-gray-100 rounded-lg mr-4 flex items-center justify-center">
+                        <div className="w-8 h-8 bg-dlai-secondary rounded-full flex items-center justify-center">
+                          <Play size={14} className="text-dlai-primary ml-0.5" />
+                        </div>
+                      </div>
+                      <div>
+                        <h3 className="font-medium mb-1">{option.title}</h3>
+                        <p className="text-sm text-gray-500">{option.description}</p>
+                      </div>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -124,9 +158,9 @@ const CourseFinder = () => {
           )}
           
           {step === 'coding' && (
-            <div className="space-y-4">
+            <div className="space-y-6">
               <h2 className="text-xl font-medium">How much coding experience do you have?</h2>
-              <div className="space-y-3">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {[
                   {
                     level: 'Beginner',
@@ -148,12 +182,21 @@ const CourseFinder = () => {
                   <div 
                     key={option.level}
                     onClick={() => setCodingLevel(option.level)}
-                    className={`p-4 border rounded-lg cursor-pointer transition-all ${
+                    className={`p-5 border rounded-lg cursor-pointer transition-all ${
                       codingLevel === option.level ? 'border-dlai-primary bg-dlai-primary/5' : 'border-gray-200 hover:border-dlai-primary/50'
                     }`}
                   >
-                    <div className="font-medium">{option.level}</div>
-                    <div className="text-sm text-gray-600">{option.description}</div>
+                    <div className="flex items-start">
+                      <div className="w-16 h-16 bg-gray-100 rounded-lg mr-4 flex items-center justify-center">
+                        <div className="w-8 h-8 bg-dlai-secondary rounded-full flex items-center justify-center">
+                          <Play size={14} className="text-dlai-primary ml-0.5" />
+                        </div>
+                      </div>
+                      <div>
+                        <h3 className="font-medium mb-1">{option.level}</h3>
+                        <p className="text-sm text-gray-500">{option.description}</p>
+                      </div>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -161,9 +204,9 @@ const CourseFinder = () => {
           )}
           
           {step === 'math' && (
-            <div className="space-y-4">
+            <div className="space-y-6">
               <h2 className="text-xl font-medium">How much math experience do you have?</h2>
-              <div className="space-y-3">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {[
                   {
                     level: 'Beginner',
@@ -185,12 +228,21 @@ const CourseFinder = () => {
                   <div 
                     key={option.level}
                     onClick={() => setMathLevel(option.level)}
-                    className={`p-4 border rounded-lg cursor-pointer transition-all ${
+                    className={`p-5 border rounded-lg cursor-pointer transition-all ${
                       mathLevel === option.level ? 'border-dlai-primary bg-dlai-primary/5' : 'border-gray-200 hover:border-dlai-primary/50'
                     }`}
                   >
-                    <div className="font-medium">{option.level}</div>
-                    <div className="text-sm text-gray-600">{option.description}</div>
+                    <div className="flex items-start">
+                      <div className="w-16 h-16 bg-gray-100 rounded-lg mr-4 flex items-center justify-center">
+                        <div className="w-8 h-8 bg-dlai-secondary rounded-full flex items-center justify-center">
+                          <Play size={14} className="text-dlai-primary ml-0.5" />
+                        </div>
+                      </div>
+                      <div>
+                        <h3 className="font-medium mb-1">{option.level}</h3>
+                        <p className="text-sm text-gray-500">{option.description}</p>
+                      </div>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -199,21 +251,21 @@ const CourseFinder = () => {
           
           {step === 'preview' && (
             <div className="space-y-6">
-              <h2 className="text-xl font-medium">Preview of your learning journey</h2>
+              <h2 className="text-xl font-medium mb-4">Preview of your learning journey</h2>
               
-              <div className="bg-gray-50 p-4 rounded-lg">
+              <div className="bg-gray-50 p-6 rounded-lg">
                 <h3 className="text-lg font-medium mb-2">Pivot to Entry-Level ML Engineer</h3>
                 <p className="text-gray-600 mb-4">(Expected: 4–7 Months)</p>
                 
                 <div className="space-y-4">
-                  <div className="bg-white p-4 rounded-lg border border-gray-200">
-                    <div className="flex items-start gap-3">
+                  <div className="bg-white p-5 rounded-lg border border-gray-200">
+                    <div className="flex items-start gap-4">
                       <div className="mt-1 bg-green-500 text-white rounded-full p-1">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path d="M5 12L10 17L20 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                         </svg>
                       </div>
-                      <div>
+                      <div className="flex-grow">
                         <h4 className="font-medium">Core Foundations (1-2 Months • 2 Courses)</h4>
                         <p className="text-sm text-gray-600 mt-1">
                           Before diving into ML, a strong grasp of Python, math, and data handling 
@@ -224,17 +276,22 @@ const CourseFinder = () => {
                           <li>• Mathematics for Machine Learning and Data Science (DeepLearning.AI)</li>
                         </ul>
                       </div>
+                      <div className="w-32 h-24 bg-gray-100 rounded-lg flex items-center justify-center">
+                        <div className="w-10 h-10 bg-dlai-secondary rounded-full flex items-center justify-center">
+                          <Play size={16} className="text-dlai-primary ml-0.5" />
+                        </div>
+                      </div>
                     </div>
                   </div>
                   
-                  <div className="bg-white p-4 rounded-lg border border-gray-200">
-                    <div className="flex items-start gap-3">
+                  <div className="bg-white p-5 rounded-lg border border-gray-200">
+                    <div className="flex items-start gap-4">
                       <div className="mt-1 bg-green-500 text-white rounded-full p-1">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path d="M5 12L10 17L20 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                         </svg>
                       </div>
-                      <div>
+                      <div className="flex-grow">
                         <h4 className="font-medium">Core Machine Learning (2-3 Months • 2 Courses)</h4>
                         <p className="text-sm text-gray-600 mt-1">
                           This stage teaches the fundamental ML algorithms used in real-world.
@@ -245,12 +302,17 @@ const CourseFinder = () => {
                           <li>• Structuring Machine Learning Projects (DeepLearning.AI)</li>
                         </ul>
                       </div>
+                      <div className="w-32 h-24 bg-gray-100 rounded-lg flex items-center justify-center">
+                        <div className="w-10 h-10 bg-dlai-secondary rounded-full flex items-center justify-center">
+                          <Play size={16} className="text-dlai-primary ml-0.5" />
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
               
-              <div className="bg-gray-50 p-4 rounded-lg">
+              <div className="bg-gray-50 p-6 rounded-lg">
                 <h3 className="text-lg font-medium">More about ML Engineer</h3>
                 <p className="text-gray-600 mb-4">Build and deploy machine learning models for real-world applications.</p>
                 
@@ -275,6 +337,35 @@ const CourseFinder = () => {
                     <div>
                       <h4 className="font-medium text-sm">Current Learners</h4>
                       <p className="text-lg font-bold">139,000+</p>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <h4 className="font-medium mb-2">Alumni's Success Story</h4>
+                    <div className="bg-white rounded-lg overflow-hidden border border-gray-200">
+                      <div className="relative">
+                        <div className="checkerboard-pattern w-full h-32"></div>
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <div className="w-12 h-12 rounded-full bg-white bg-opacity-90 flex items-center justify-center shadow-md">
+                            <Play className="w-5 h-5 text-dlai-primary ml-1" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <h4 className="font-medium mb-2">Daily Life of a ML Engineer</h4>
+                    <div className="bg-white rounded-lg overflow-hidden border border-gray-200">
+                      <div className="relative">
+                        <div className="checkerboard-pattern w-full h-32"></div>
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <div className="w-12 h-12 rounded-full bg-white bg-opacity-90 flex items-center justify-center shadow-md">
+                            <Play className="w-5 h-5 text-dlai-primary ml-1" />
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>

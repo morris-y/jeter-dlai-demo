@@ -1,7 +1,17 @@
 
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { Menu, X, ChevronDown } from 'lucide-react';
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  navigationMenuTriggerStyle,
+} from "@/components/ui/navigation-menu"
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -17,7 +27,7 @@ const Navbar = () => {
   }, []);
 
   const navItems = [
-    { label: 'Explore Courses', url: '#' },
+    { label: 'Explore Courses', url: '/courses' },
     { label: 'AI Newsletter', url: '#', hasDropdown: true },
     { label: 'AI Dev 25', url: '#' },
     { label: 'Community', url: '#', hasDropdown: true },
@@ -32,49 +42,74 @@ const Navbar = () => {
       )}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
-        <a href="/" className="flex items-center space-x-3">
+        <Link to="/" className="flex items-center space-x-3">
           <img 
             src="/lovable-uploads/a3bb4404-edae-4a97-abb8-e9720603bafb.png" 
             alt="DeepLearning.AI Logo" 
             className="h-10"
           />
-        </a>
+        </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-8">
-          {navItems.map((item, index) => (
-            <div key={index} className="relative group">
-              <a
-                href={item.url}
-                className="text-gray-700 hover:text-dlai-primary transition-colors duration-200 flex items-center"
-              >
-                {item.label}
-                {item.hasDropdown && <ChevronDown className="ml-1 h-4 w-4" />}
-              </a>
-              {item.hasDropdown && (
-                <div className="absolute left-0 mt-2 w-48 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform group-hover:translate-y-0 translate-y-2 z-10">
-                  <div className="bg-white rounded-md shadow-lg overflow-hidden py-2">
-                    <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                      Option 1
-                    </a>
-                    <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                      Option 2
-                    </a>
-                  </div>
-                </div>
-              )}
-            </div>
-          ))}
-        </nav>
+        <NavigationMenu className="hidden md:flex">
+          <NavigationMenuList className="space-x-4">
+            {navItems.map((item, index) => (
+              <NavigationMenuItem key={index}>
+                {item.hasDropdown ? (
+                  <>
+                    <NavigationMenuTrigger className="bg-transparent">{item.label}</NavigationMenuTrigger>
+                    <NavigationMenuContent>
+                      <ul className="grid gap-3 p-4 w-48">
+                        <li className="row-span-1">
+                          <NavigationMenuLink asChild>
+                            <Link
+                              className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                              to="#"
+                            >
+                              <div className="text-sm font-medium">Option 1</div>
+                            </Link>
+                          </NavigationMenuLink>
+                        </li>
+                        <li className="row-span-1">
+                          <NavigationMenuLink asChild>
+                            <Link
+                              className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                              to="#"
+                            >
+                              <div className="text-sm font-medium">Option 2</div>
+                            </Link>
+                          </NavigationMenuLink>
+                        </li>
+                      </ul>
+                    </NavigationMenuContent>
+                  </>
+                ) : (
+                  <Link
+                    to={item.url}
+                    className="text-gray-700 hover:text-dlai-primary transition-colors duration-200 px-4 py-2"
+                  >
+                    {item.label}
+                  </Link>
+                )}
+              </NavigationMenuItem>
+            ))}
+          </NavigationMenuList>
+        </NavigationMenu>
 
-        <div className="hidden md:flex items-center space-x-4">
-          <a
-            href="#"
+        <div className="hidden md:flex items-center space-x-6">
+          <Link
+            to="/learning-journey"
             className="px-4 py-2 rounded-md text-dlai-primary hover:bg-dlai-secondary transition-colors duration-200"
           >
             My Learning
-          </a>
-          <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center text-gray-600">
+          </Link>
+          <Link
+            to="/courses"
+            className="px-4 py-2 rounded-md text-gray-700 hover:text-dlai-primary transition-colors duration-200"
+          >
+            Explore Courses
+          </Link>
+          <Link to="#" className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center text-gray-600">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -89,7 +124,7 @@ const Navbar = () => {
                 d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
               />
             </svg>
-          </div>
+          </Link>
         </div>
 
         {/* Mobile Menu Button */}
@@ -105,21 +140,27 @@ const Navbar = () => {
       {mobileMenuOpen && (
         <div className="md:hidden bg-white absolute left-0 right-0 shadow-lg py-4 px-6 animate-slideDown">
           {navItems.map((item, index) => (
-            <a
+            <Link
               key={index}
-              href={item.url}
+              to={item.url}
               className="block py-3 text-gray-700 hover:text-dlai-primary transition-colors duration-200 border-b border-gray-100 last:border-0"
             >
               {item.label}
-            </a>
+            </Link>
           ))}
           <div className="mt-4 flex flex-col space-y-3">
-            <a
-              href="#"
+            <Link
+              to="/learning-journey"
               className="px-4 py-2 rounded-md bg-dlai-secondary text-dlai-primary text-center transition-colors duration-200"
             >
               My Learning
-            </a>
+            </Link>
+            <Link
+              to="/courses"
+              className="px-4 py-2 rounded-md border border-gray-300 text-center transition-colors duration-200"
+            >
+              Explore Courses
+            </Link>
           </div>
         </div>
       )}

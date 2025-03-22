@@ -76,14 +76,14 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="space-y-3"
+              className="space-y-3 pt-4"
             >
               <p className="text-gray-600 text-lg">
                 Let our AI tailor your new AI learning journey for you.
               </p>
               
               <Link to="/course-finder">
-                <button className="px-8 py-3 rounded-md bg-dlai-primary text-white font-medium transition-all duration-300 transform hover:translate-y-[-2px] hover:shadow-lg">
+                <button className="px-10 py-4 rounded-md bg-dlai-primary text-white font-medium transition-all duration-300 transform hover:translate-y-[-2px] hover:shadow-lg text-lg mt-4">
                   Find what's right for you
                 </button>
               </Link>
@@ -93,7 +93,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.6 }}
-              className="pt-6"
+              className="pt-8"
             >
               <p className="text-gray-600 mb-4">
                 Get the latest AI news, courses, events, and insights from Andrew Ng and other AI leaders.
