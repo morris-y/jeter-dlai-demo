@@ -1,6 +1,6 @@
 # DeepLearning AI Demo Project
 
-Built a demo designed by my friend ![Jeter](https://www.linkedin.com/in/ACoAACDZnVwB2ik1jybioG5TckTRskJvm2X2f6Y?lipi=urn%3Ali%3Apage%3Ad_flagship3_messaging_conversation_detail%3BC0XryoxER%2BWW%2ByVevUA6Gw%3D%3D)
+Built a demo designed by my friend [Jeter](https://www.linkedin.com/in/ACoAACDZnVwB2ik1jybioG5TckTRskJvm2X2f6Y?lipi=urn%3Ali%3Apage%3Ad_flagship3_messaging_conversation_detail%3BC0XryoxER%2BWW%2ByVevUA6Gw%3D%3D)
 
 ## Project Overview
 
