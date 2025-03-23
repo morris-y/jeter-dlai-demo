@@ -24,7 +24,7 @@ This is a demonstration project showcasing a modern web application with advance
 
 ## Screenshot
 
-![Product Screenshot](Public/screenshots/Capture.PNG)
+![Product Screenshot](public/screenshots/Capture.PNG)
 
 ## Getting Started
 
